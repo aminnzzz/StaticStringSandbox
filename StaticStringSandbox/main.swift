@@ -9,7 +9,7 @@ import Foundation
 
 /*
 difference with string: need to hand type characters
- no string interpolation or lading through codable
+ no string interpolation or loading through codable
  known string at compile time
  */
 
@@ -24,11 +24,24 @@ assert(name.count >= 10, "Name should be at least 10 characters")
 // look at the terminal, anything interesting?
 // #file and #line are macros, but why are they static strings instead of regular strings?
 
+/*
+ very interesting case of infinite recursion
+
+ if assert, fatalError, preCondition used String, which could call assert internally -> infinite recurstion
+ */
+
 // creating them never triggers assertions
 // extremely close to bare metal... faster
 
 // most importantly, these strings are always known at compile time, content either correct or not... what we type matters
 // if you type the URL wrong for example for tests, mocks and etc, recovering might be pointless, the test needs to just fail instead of using do catch blocks and etc
+
+/*
+cannot mutate or change, holds string literals,
+ swift stores it more efficiently knowing that it won't change
+ it can be initialized with an address pointer and length
+ not alloced or dealloced, no reference counting needed
+ */
 
 // do not know the contents of string at compile time, can fail at run time
 if let url = URL(string: "https://apple.com") {
