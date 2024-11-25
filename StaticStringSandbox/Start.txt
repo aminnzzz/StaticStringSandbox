@@ -1,0 +1,9 @@
+
+To get started, make sure you clone the swift code itself
+
+github.com/apple/swift
+
+1- stdlib/public/core/assert.swift
+
+tip one: use more assertions
+
